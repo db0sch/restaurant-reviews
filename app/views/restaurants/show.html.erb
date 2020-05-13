@@ -1,19 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+      <p>
+        <strong>Name:</strong>
+        <%= @restaurant.name %>
+      </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
+      <p>
+        <strong>Address:</strong>
+        <%= @restaurant.address %>
+      </p>
 
-<p>
-  <strong>Stars:</strong>
-  <%= @restaurant.stars %>
-</p>
+      <p>
+        <strong>Stars:</strong>
+        <%= @restaurant.stars %>
+      </p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+      <h5>Reviews</h5>
+      <ul class="list-group">
+        <% @restaurant.reviews.each do |review|%>
+          <li class="list-group-item">
+            <%= review.content %>
+            <%= link_to 'Remove', review_path(review), method: :delete, data: { confirm: "Are you sure?" }  %>
+          </li>
+        <% end %>
+      </ul>
+
+      <%= link_to "Leave a review", new_restaurant_review_path(@restaurant) %>
+
+      <%#= link_to 'Who is the chef?', chef_restaurant_path(@restaurant) %>
+      <br>
+
+      <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+      <%= link_to 'Back', restaurants_path %>
+
+    </div>
+  </div>
+</div>
+
